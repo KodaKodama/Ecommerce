@@ -38,6 +38,7 @@ const userController = {
             return res.status(500).json({ message: err.message });
         }
     },
+    
     refreshtoken: async(req, res) => {
         try{
             const rf_token = req.cookies.refreshtoken;
@@ -53,6 +54,7 @@ const userController = {
         }
        
     },
+
     login: async(req, res) => {
         try{
             const { email, password } = req.body;
@@ -74,6 +76,16 @@ const userController = {
             res.json({msg: "Login Sucesfull", accessToken})
         }catch(err){
             return res.status(500).json({message: err.message});
+        }
+    },
+
+    logout:async(req, res) => {
+        try{
+            res.clearCookie('refreshtoken', {path: '/user/refresh_token'});
+            return res.json({msg: "Logged out"})
+
+        }catch(err){
+            return res.status(500).json({msg: err.message});
         }
     },
 }
