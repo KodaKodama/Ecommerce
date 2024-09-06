@@ -37,7 +37,22 @@ const userController = {
             
             return res.status(500).json({ message: err.message });
         }
-    }
+    },
+    refreshtoken: async(req, res) => {
+        try{
+            const rf_token = req.cookies.refreshtoken;
+            if(!rf_token) return res.status(400).json({msg:"please login or register"});
+    
+            jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+                if(err) return res.status(400).json({msg: "please login or register"});
+                const accesstoken = createAccessToken({id:user.id});
+                res.json({user, accesstoken});
+            })
+        }catch(err){
+            return res.status(500).json({ message: err.message });
+        }
+       
+    },
 }
 
 const createAccessToken = (payload) => {
