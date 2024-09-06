@@ -13,3 +13,4 @@ app.listen(PORT, () => {
 
 // Routes
 app.use('/user', require('./routes/userRouter'));
+// app.use('/api', require('./routes/productRouter'))
