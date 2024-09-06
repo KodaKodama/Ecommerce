@@ -38,7 +38,7 @@ const userController = {
             return res.status(500).json({ message: err.message });
         }
     },
-    
+
     refreshtoken: async(req, res) => {
         try{
             const rf_token = req.cookies.refreshtoken;
@@ -88,6 +88,15 @@ const userController = {
             return res.status(500).json({msg: err.message});
         }
     },
+    getUser:async(req, res) => {
+        try{
+            const user = await Users.findById(req.user.id).select('-password');
+            if(!user) return res.status(400).json({msg: "User not found"})
+            res.json(user);
+        }catch(err){
+            return res.status(500).json({message: err.message});
+        }
+    }
 }
 
 const createAccessToken = (payload) => {
