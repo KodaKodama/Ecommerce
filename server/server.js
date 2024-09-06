@@ -10,3 +10,6 @@ app.use(express.json());
 app.listen(PORT, () => {
     console.log('server is running');
 });
+
+// Routes
+app.use('/user', require('./routes/userRouter'));
