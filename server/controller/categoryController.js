@@ -31,6 +31,16 @@ const categoryController = {
             return res.status(500).json({ message: err.message });
         }
     },
+   
+    updateCategory: async(req, res) => {
+        try{
+            const {name} = req.body;
+            await Category.findByIdAndUpdate({_id: req.params.id}, {name}); 
+            res.json({msg: "category updated"})
+        }catch(err){
+            return res.status(500).json({ message: err.message });
+        }
+    },
 }
 
 module.exports = categoryController;
