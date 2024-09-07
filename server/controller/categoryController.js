@@ -23,6 +23,14 @@ const categoryController = {
             return res.status(500).json({ message: err.message });
         }
     },
+    deleteCategory: async(req, res) => {
+        try{
+            await Category.findByIdAndDelete(req.params.id);
+            res.json({msg: "category deleted"})
+        }catch(err){
+            return res.status(500).json({ message: err.message });
+        }
+    },
 }
 
 module.exports = categoryController;
