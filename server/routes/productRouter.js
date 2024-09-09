@@ -7,5 +7,6 @@ router.route('/products')
 
 router.route('/products/:id')
 .delete(productController.deleteProduct)
+.put(productController.updateProduct)
 
 module.exports = router;
