@@ -50,13 +50,18 @@ class APIfeatures{
 }
 
 const productController = {
-    getProducts: async(req, res) => {
+    getProducts:async(req,res) => {
         try{
+            console.log(req.query)
             const features = new APIfeatures(Products.find(),req.query).filtering().sorting().pagination()
             const products = await features.query
-            res.json(products)
-        }catch(err){
-            return res.status(500).json({msg: err.message})
+
+            res.json({status:'success',
+            result: products.length,
+        products:products})
+        }
+        catch(err){
+            return res.status(500).json({msg:err.message})
         }
     },
     createProducts: async(req, res)=> {
