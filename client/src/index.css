@@ -1,6 +1,7 @@
 @import url("./components/headers/header.css");
 @import url("./components/mainpages/products/products.css");
 @import url("./components/mainpages/utils/productList.css");
+@import url("./components/mainpages/utils/DetailProducts/detailProduct.css");
 
 *{
   padding: 0;
